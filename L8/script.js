@@ -64,7 +64,7 @@ function createArrayRandom(){
     } while (i < arr.length);
     console.log(`Min is ${min}`);
 
-    if(arr.indexOf(3)){
+    if(arr.indexOf(3) !== -1){
         console.log(`In array ${arr} there is number 3`);
     } else {
         console.log(`In array ${arr} there is no number 3`);
