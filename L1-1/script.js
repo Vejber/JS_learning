@@ -45,7 +45,7 @@ function factorial(number){
 function callFactorial(){
     let number = Number(prompt("Enter a number"));
     if(!isNaN(number)){
-        console.log(factorial(Number(prompt("Enter a number"))));
+        console.log(factorial(number));
     } else {
         alert('isNaN :(');
     }
