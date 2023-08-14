@@ -111,7 +111,6 @@ class Bank{
     }
 
     openAccount = (Client, sum) =>{
-        // accountList.push();
         this.accountNumber++;
         let newAccountNumber = this.accountNumber;
         const newAccount = {Client, sum, newAccountNumber};
