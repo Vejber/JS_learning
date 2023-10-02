@@ -88,7 +88,7 @@ class DrawFigure{
                 ];
                 return;
             }
-            DrawFigure.board = this.checkResult(playerNumber, this.board);
+            this.checkResult(playerNumber, this.board);
         }
     }
 }
