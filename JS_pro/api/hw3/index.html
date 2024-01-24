@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Случайное изображение с Unsplash</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        #image {
+            max-width: 80%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        #photographer {
+            margin-bottom: 20px;
+            font-style: italic;
+            color: #555;
+        }
+
+        #like-button {
+            background-color: #008CBA;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #like-count {
+            font-size: 20px;
+            color: #333;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Случайное изображение с Unsplash</h1>
+    <img id="image" src="" alt="Случайное изображение">
+    <p id="photographer"></p>
+    <button id="like-button">Лайк</button>
+    <span id="like-count">0</span>
+
+    <script>
+        const accessKey = ''; // API-ключ
+
+        function fetchImage() {
+            axios.get(`https://api.unsplash.com/photos/random?client_id=${accessKey}`)
+                .then(response => {
+                    const imageUrl = response.data.urls.regular;
+                    const photographerName = response.data.user.name;
+                    document.getElementById('image').src = imageUrl;
+                    document.getElementById('photographer').textContent = `Фотограф: ${photographerName}`;
+                })
+                .catch(error => {
+                    console.error('Ошибка при получении изображения: ', error);
+                });
+        }
+
+        document.getElementById('like-button').addEventListener('click', function() {
+            let likeCount = parseInt(document.getElementById('like-count').textContent);
+            document.getElementById('like-count').textContent = likeCount + 1;
+        });
+
+        window.onload = fetchImage;
+    </script>
+</body>
+</html>
